@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter by Spark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #f0f9ff;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #0077cc;
+    }
+    input, select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌡️ Temperature Converter</h1>
+
+  <input id="tempInput" type="number" placeholder="Enter temperature">
+  <select id="fromUnit">
+    <option value="C">°C</option>
+    <option value="F">°F</option>
+    <option value="K">K</option>
+  </select>
+
+  <span style="font-size: 24px;">⬇️</span>
+
+  <select id="toUnit">
+    <option value="C">°C</option>
+    <option value="F">°F</option>
+    <option value="K">K</option>
+  </select>
+
+  <button onclick="convertTemp()">Convert</button>
+
+  <h2>Result:</h2>
+  <p id="result"></p>
+
+  <script>
+    function convertTemp() {
+      const input = parseFloat(document.getElementById("tempInput").value);
+      const from = document.getElementById("fromUnit").value;
+      const to = document.getElementById("toUnit").value;
+      let result;
+
+      if (isNaN(input)) {
+        result = "Please enter a valid number!";
+      } else if (from === to) {
+        result = input + "°" + to;
+      } else {
+        switch (from + " to " + to) {
+          case "C to F":
+            result = (input * 9/5 + 32).toFixed(2) + "°F";
+            break;
+          case "F to C":
+            result = ((input - 32) * 5/9).toFixed(2) + "°C";
+            break;
+          case "C to K":
+            result = (input + 273.15).toFixed(2) + "K";
+            break;
+          case "K to C":
+            result = (input - 273.15).toFixed(2) + "°C";
+            break;
+          case "F to K":
+            result = ((input - 32) * 5/9 + 273.15).toFixed(2) + "K";
+            break;
+          case "K to F":
+            result = ((input - 273.15) * 9/5 + 32).toFixed(2) + "°F";
+            break;
+          default:
+            result = "Conversion not supported!";
+        }
+      }
+
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+
+</body>
+  </html>
