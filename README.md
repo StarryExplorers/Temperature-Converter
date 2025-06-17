@@ -19,9 +19,9 @@ This simple app lets you change between Celsius, Fahrenheit, and Kelvin.
 - Add it to your home screen!
 
 ## 🌐 Try it online
-[👉 Open Temp Converter](https://your-temp-link-here)
+[👉 Open Temp Converter](https://starryexplorers.github.io/Temperature-Converter/)
 
 ## 🧠 Made by
-Spark, the awesome coder and creator! 💻💪
+Spark! 💻💪
 
 ---
