@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Temperature Converter by Spark</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f0f9ff" />
 
-  <!-- 🔗 Manifest for PWA -->
-  <link rel="manifest" href="manifest.json">
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
 
   <style>
     body {
@@ -39,14 +41,14 @@
 
   <h1>🌡️ Temperature Converter</h1>
 
-  <input id="tempInput" type="number" placeholder="Enter temperature">
+  <input id="tempInput" type="number" placeholder="Enter temperature" />
   <select id="fromUnit">
     <option value="C">°C</option>
     <option value="F">°F</option>
     <option value="K">K</option>
   </select>
 
-  <span style="font-size: 24px;">⬇️</span>
+  <div style="font-size: 24px; text-align: center;">⬇️</div>
 
   <select id="toUnit">
     <option value="C">°C</option>
@@ -99,32 +101,31 @@
     }
   </script>
 
-  <!-- 🛠️ Register service worker -->
+  <!-- Service Worker Registration -->
   <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').then(reg => {
-      reg.onupdatefound = () => {
-        const newWorker = reg.installing;
-        newWorker.onstatechange = () => {
-          if (newWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              const update = confirm("🔄 A new version is available. Do you want to update?");
-              if (update) {
-                newWorker.postMessage({ action: 'SKIP_WAITING' });
-                window.location.reload();
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(reg => {
+        reg.onupdatefound = () => {
+          const newWorker = reg.installing;
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                const update = confirm("🔄 A new version is available. Do you want to update?");
+                if (update) {
+                  newWorker.postMessage({ action: 'SKIP_WAITING' });
+                  window.location.reload();
+                }
               }
             }
-          }
+          };
         };
-      };
-    });
+      });
 
-    // Listen to the message to skip waiting
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      console.log("🔥 Controller changed — app updated");
-    });
-  }
-        </script>
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log("🔥 Controller changed — app updated");
+      });
+    }
+  </script>
 
 </body>
-  </html>
+</html>
