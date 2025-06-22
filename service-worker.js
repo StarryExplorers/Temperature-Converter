@@ -3,8 +3,7 @@ const FILES_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/what-is-numlin.html',
-  '/service-worker.js',
+  '/service-worker.js'
 ];
 
 // Cache essential files during install
